@@ -9,3 +9,5 @@
     cd app_name
     yarn start
     
+### template
+Simple template project for creating many projects
