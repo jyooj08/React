@@ -12,8 +12,8 @@ class Habits extends Component {
                         <Habit key={habit.id} habit={habit} 
                         handleIncrement={this.props.handleIncrement}
                         handleDecrement={this.props.handleDecrement}
-                        handleDelete={this.props.handleDelete} />
-                )}
+                        handleDelete={this.props.handleDelete} />)
+                }
             </ul>
         );
     }
