@@ -35,9 +35,12 @@ class App extends Component {
       this.setState({habits});
   }
 
-  handleAdd = (habitName, id) => {
+  handleAdd = (name) => {
     let habits = [...this.state.habits];
-    habits.push({id: id, name: habitName, count: 0});
+    let id = name.split('').reduce((acc, cur, i) => {
+        return acc + cur.charCodeAt(0);
+    }, 0);
+    habits.push({id, name, count: 0});
     this.setState({habits});
   }
 

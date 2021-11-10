@@ -29,6 +29,19 @@ nav{
 
 }
 
+.add-input{
+  font-size: 2rem;
+  margin-right: 0.2em;
+}
+
+.add-button{
+  height: 100%;
+  font-size: 1.5rem;
+  padding: 0.3em 0.5em;
+  background-color: green;
+  color: white;
+}
+
 .habit{
   font-size: 2.5rem;
   padding: 0.5em;

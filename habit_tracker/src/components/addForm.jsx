@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 
 class AddForm extends Component {
+    
+    /* 유지니 코드
     state = {
         content: "",
     }
@@ -21,12 +23,30 @@ class AddForm extends Component {
     onKeyPress = (e) => {
         if(e.key === 'Enter') this.handleAdd();
     }
+    */
+
+    inputRef = React.createRef();
+
+    onSubmit = (e) => {
+        e.preventDefault();
+        const name = this.inputRef.current.value;
+        name && this.props.handleAdd(name);
+        this.inputRef.current.value="";
+    }
 
     render() {
+        /* 유지니 코드
         return (<>
-            <input placeholder="Enter Habit" value={this.state.content} onChange={this.getInput} onKeyPress={this.onKeyPress}></input>
+            <input className="add-input" placeholder="Enter Habit" value={this.state.content} onChange={this.getInput} onKeyPress={this.onKeyPress}></input>
             <button className="add-button" onClick={this.handleAdd}>Add</button>
-        </>);
+        </>);*/
+
+        return (
+            <form className="add-form" onSubmit={this.onSubmit}>
+                <input ref={this.inputRef} type="text" className="add-input" placeholder="Enter Habit" />
+                <button className="add-button">Add</button>
+            </form>
+        );
     }
 }
 
