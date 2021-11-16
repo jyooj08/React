@@ -9,8 +9,8 @@
     cd app_name
     yarn start
     
-### Project: template
+### template
 Simple template project for creating many projects
 
-### Project: habit_tracker
+### habit_tracker
 An application that stores the type and number of habits you currently have.
