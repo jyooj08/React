@@ -44,14 +44,26 @@ class App extends Component {
     this.setState({habits});
   }
 
+  handleReset = () => {
+      // this.setState({habits: []});
+      const habits = this.state.habits.map(habit => {
+        habit.count = 0;
+        return habit;
+      });
+      this.setState({habits});
+  }
+
   render(){
     return (<>
       <Navbar totalCount={this.state.habits.filter(item => item.count > 0).length} />
-      <AddForm handleAdd={this.handleAdd}></AddForm>
-      <Habits habits={this.state.habits}
-      handleIncrement={this.handleIncrement}
-      handleDecrement={this.handleDecrement}
-      handleDelete={this.handleDelete} />
+      <section>
+        <AddForm handleAdd={this.handleAdd}></AddForm>
+        <Habits habits={this.state.habits}
+        handleIncrement={this.handleIncrement}
+        handleDecrement={this.handleDecrement}
+        handleDelete={this.handleDelete}
+        handleReset = {this.handleReset} />
+      </section>
     </>);
   }
 }
