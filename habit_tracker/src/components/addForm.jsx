@@ -45,6 +45,7 @@ class AddForm extends Component {
             <form className="add-form" onSubmit={this.onSubmit}>
                 <input ref={this.inputRef} type="text" className="add-input" placeholder="Enter Habit" />
                 <button className="add-button">Add</button>
+                <button className="habit-reset" onClick={this.props.handleReset}>Reset All</button>
             </form>
         );
     }

@@ -7,11 +7,7 @@ import AddForm from './components/addForm';
 
 class App extends Component {
   state = {
-      habits: [
-          {id: 1, name: 'Reading', count: 0}, 
-          {id: 2, name: 'Running', count: 0},
-          {id: 3, name: 'Coding', count: 0}
-      ],
+      habits: []
   };
 
   handleIncrement = (habit) => {
@@ -57,12 +53,11 @@ class App extends Component {
     return (<>
       <Navbar totalCount={this.state.habits.filter(item => item.count > 0).length} />
       <section>
-        <AddForm handleAdd={this.handleAdd}></AddForm>
+        <AddForm handleAdd={this.handleAdd} handleReset = {this.handleReset}></AddForm>
         <Habits habits={this.state.habits}
         handleIncrement={this.handleIncrement}
         handleDecrement={this.handleDecrement}
-        handleDelete={this.handleDelete}
-        handleReset = {this.handleReset} />
+        handleDelete={this.handleDelete} />
       </section>
     </>);
   }
