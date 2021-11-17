@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 
-class AddForm extends Component {
+class AddForm extends PureComponent {
     
     /* 유지니 코드
     state = {
