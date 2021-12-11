@@ -45,12 +45,23 @@ button{
 }
 
 
+.youtube-body{
+  display: flex;
+  width: 80%;
+  margin: auto;
+}
+
+.main-section{
+  width: 60%;
+}
+
+
 .video-list{
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  width: 70%;
-  margin: auto;
+  margin: 0;
+  width: 40%;
 }
 
 .video{
@@ -58,8 +69,8 @@ button{
   align-items: center;
   padding: 10px 0;
   box-shadow: 8px 8px 4px -3px #B5B5B5;
-  width: 49%;
   cursor: pointer;
+  width: 100%;
 }
 
 .video img{

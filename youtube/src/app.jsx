@@ -2,10 +2,12 @@ import React, { Component } from 'react';
 import VideoList from './components/videoList';
 import './app.css';
 import SearchBar from './components/searchBar';
+import MainVideo from './components/mainVideo';
 
 class App extends Component {
   state = {
-    videos: []
+    videos: [],
+    mainVideo: null
   }
 
   componentDidMount(){
@@ -31,12 +33,29 @@ class App extends Component {
       .then(result => this.setState({videos: result.items}))
       .catch(error => console.log('error', error));
     
+    this.setState({mainVideo: null})
+  }
+
+  playVideo = (videoId) => {
+    var requestOptions = {
+      method: 'GET',
+      redirect: 'follow'
+    };
+    
+    fetch("https://www.googleapis.com/youtube/v3/videos?part=snippet&id="+videoId+"&key=AIzaSyBxhlhxZzDoUAk9lGMuICMV3JpCrAT98BY", requestOptions)
+      .then(response => response.json())
+      .then(result => this.setState({mainVideo: result.items[0]}))
+      .catch(error => console.log('error', error));
   }
 
   render() {
     return (<>
       <SearchBar search={this.search} />
-      <VideoList videos={this.state.videos}/>
+      <div className="youtube-body">
+        <MainVideo videoInfo={this.state.mainVideo} />
+        <VideoList videos={this.state.videos} playVideo={this.playVideo}/>
+      </div>
+      
     </>);
   }
 }
