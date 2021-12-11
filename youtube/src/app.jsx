@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import VideoList from './components/videoList';
 import './app.css';
+import SearchBar from './components/searchBar';
 
 class App extends Component {
   state = {
@@ -19,10 +20,24 @@ class App extends Component {
       .catch(error => console.log('error', error));
   }
 
+  search = (query) => {
+    var requestOptions = {
+      method: 'GET',
+      redirect: 'follow'
+    };
+    
+    fetch("https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&q="+query+"&key=AIzaSyBxhlhxZzDoUAk9lGMuICMV3JpCrAT98BY", requestOptions)
+      .then(response => response.json())
+      .then(result => this.setState({videos: result.items}))
+      .catch(error => console.log('error', error));
+    
+  }
+
   render() {
-    return (
+    return (<>
+      <SearchBar search={this.search} />
       <VideoList videos={this.state.videos}/>
-    );
+    </>);
   }
 }
 

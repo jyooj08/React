@@ -5,13 +5,49 @@ ul, li{
   margin: 0;
 }
 
-.root{
-  text-align: center;
+button{
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  cursor: pointer;
 }
+
+.searchbar{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%; height: 100px;
+  margin: auto;
+  background-color: black;
+  font-size: 1.5rem;
+}
+.searchbar img{
+  width: 30px;
+}
+.searchbar span{
+  color: white;
+  margin: 0 16px 0 5px;
+}
+.searchbar input{
+  width: 30%;
+  height: 30px;
+  outline: 0;
+}
+.searchbar .search-logo{
+  height: 30px;
+  padding: 3px;
+}
+.searchbar .search-logo:hover{
+  transform: scale(1.05);
+}
+
 
 .video-list{
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-between;
   width: 70%;
   margin: auto;
 }
@@ -19,9 +55,9 @@ ul, li{
 .video{
   display: flex;
   align-items: center;
-  padding: 10px;
+  padding: 10px 0;
   box-shadow: 8px 8px 4px -3px #B5B5B5;
-  width: 45%;
+  width: 49%;
   cursor: pointer;
 }
 
