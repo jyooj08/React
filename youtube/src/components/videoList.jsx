@@ -6,12 +6,13 @@ class VideoList extends Component {
 
     };
 
-    render() {       
-        return (<>
+    render() {  
+        console.log(this.props.videos[0]);     
+        return (<ul className='video-list'>
         {
-            this.props.videos.map(v => <Video key={v.id} title={v.snippet.title}></Video>)
+            this.props.videos.map(v => <Video key={v.id} info={v.snippet}></Video>)
         }      
-        </>);
+        </ul>);
         
     }
 }

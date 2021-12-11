@@ -2,10 +2,13 @@ import React, { Component } from 'react';
 
 class Video extends Component {
     render() {
+        const info = this.props.info;
+
         return (
-            <div className='video'>
-                {this.props.title}
-            </div>
+            <li className='video'>
+                <img src={info.thumbnails.default.url} alt="" />
+                <span>{info.title}</span>
+            </li>
         );
     }
 }
