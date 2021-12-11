@@ -38,6 +38,7 @@ button{
 .searchbar .search-logo{
   height: 30px;
   padding: 3px;
+  margin-left: 5px;
 }
 .searchbar .search-logo:hover{
   transform: scale(1.05);
