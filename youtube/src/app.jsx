@@ -11,41 +11,26 @@ class App extends Component {
   }
 
   componentDidMount(){
-    let requestOptions = {
-      method: 'GET',
-      redirect: 'follow'
-    };
-    
-    fetch("https://youtube.googleapis.com/youtube/v3/videos?part=snippet&chart=mostPopular&maxResults=25&key=AIzaSyBxhlhxZzDoUAk9lGMuICMV3JpCrAT98BY", requestOptions)
-      .then(response => response.json())
-      .then(result => this.setState({videos: result.items}))
-      .catch(error => console.log('error', error));
+    this.props.api.mostPopular()
+    .then(result => {
+      console.log(result.items);
+      this.setState({videos: result.items});
+    })
+    .catch(error => console.log('error', error));
   }
 
   search = (query) => {
-    var requestOptions = {
-      method: 'GET',
-      redirect: 'follow'
-    };
-    
-    fetch("https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&q="+query+"&key=AIzaSyBxhlhxZzDoUAk9lGMuICMV3JpCrAT98BY", requestOptions)
-      .then(response => response.json())
-      .then(result => this.setState({videos: result.items}))
-      .catch(error => console.log('error', error));
+    this.props.api.search(query)
+    .then(result => this.setState({videos: result.items}))
+    .catch(error => console.log('error', error));
     
     this.setState({mainVideo: null})
   }
 
   playVideo = (videoId) => {
-    var requestOptions = {
-      method: 'GET',
-      redirect: 'follow'
-    };
-    
-    fetch("https://www.googleapis.com/youtube/v3/videos?part=snippet&id="+videoId+"&key=AIzaSyBxhlhxZzDoUAk9lGMuICMV3JpCrAT98BY", requestOptions)
-      .then(response => response.json())
-      .then(result => this.setState({mainVideo: result.items[0]}))
-      .catch(error => console.log('error', error));
+    this.props.api.video(videoId)
+    .then(result => this.setState({mainVideo: result.items[0]}))
+    .catch(error => console.log('error', error));
   }
 
   render() {
