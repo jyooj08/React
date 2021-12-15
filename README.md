@@ -19,6 +19,7 @@ An application that stores the type and number of habits you currently have.
 
 ### youtube
 https://mini-youtube-by-yujin.netlify.app/
+
 This is a mini YouTube site created by myself using YouTube API. On the first screen, the most popular videos are listed. If you search for a word, a list of related videos appears. Click on a video to see the video and its related description.
 
 ![image](https://user-images.githubusercontent.com/38034994/146199851-b7afac1b-9e28-46c2-a327-455a5c886abb.png)
