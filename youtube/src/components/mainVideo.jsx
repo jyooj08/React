@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import styles from '../app.module.css';
 
 class MainVideo extends Component {
     render() {
@@ -12,17 +13,15 @@ class MainVideo extends Component {
         if(typeof(id) == 'object') id = id.videoId;
         let src = "https://www.youtube.com/embed/"+id;
         let desc = info.snippet.description;
-        // console.log(info);
-        console.log("mainvideo", id);
-        console.log(typeof(desc));
+
         return (
-            <div className='main-section'>
-                <iframe className='main-video' width="560" height="315" src={src} title="YouTube video player"
+            <div className={styles.mainSection}>
+                <iframe className={styles.mainVideo} src={src} title="YouTube video player"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" ></iframe>
                 
-                <div className="main-desc">
+                <pre className={styles.mainDesc}>
                     {desc}
-                </div>
+                </pre>
             </div>
         );
     }

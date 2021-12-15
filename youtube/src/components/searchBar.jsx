@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import styles from '../app.module.css';
 
 class SearchBar extends Component {
     inputRef = React.createRef();
@@ -16,11 +17,11 @@ class SearchBar extends Component {
 
     render() {
         return (
-            <nav className='searchbar'> 
-                <img src="images/logo.png" alt="logo" className='youtube-logo'/>
+            <nav className={styles.searchbar}> 
+                <img src="images/logo.png" alt="logo" className={styles.youtubeLogo}/>
                 <span>Youtube</span>
                 <input ref={this.inputRef} type="text" onKeyPress={this.onKeyPress} />
-                <button onClick={this.search}><img src="images/search.png" alt="search" className='search-logo'/></button>
+                <button onClick={this.search}><img src="images/search.png" alt="search" className={styles.searchLogo}/></button>
 
             </nav>
         );

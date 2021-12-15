@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import VideoList from './components/videoList';
-import './app.css';
+import styles from './app.module.css';
 import SearchBar from './components/searchBar';
 import MainVideo from './components/mainVideo';
 
@@ -51,9 +51,9 @@ class App extends Component {
   render() {
     return (<>
       <SearchBar search={this.search} />
-      <div className="youtube-body">
+      <div className={styles.youtubeBody}>
         <MainVideo videoInfo={this.state.mainVideo} />
-        <VideoList videos={this.state.videos} playVideo={this.playVideo}/>
+        <VideoList mainVideo={this.state.mainVideo} videos={this.state.videos} playVideo={this.playVideo}/>
       </div>
       
     </>);
