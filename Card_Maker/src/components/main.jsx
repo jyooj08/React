@@ -4,7 +4,9 @@ class Main extends Component {
     render() {
         return (
             <div>
-                <h1>Main</h1>
+                <h1>{this.props.user.uid}</h1>
+                <h1>{this.props.user.displayName}</h1>
+                <h1>{this.props.user.email}</h1>
             </div>
         );
     }
