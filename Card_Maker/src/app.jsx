@@ -3,7 +3,7 @@ import './app.css';
 import Login from './components/login';
 import Main from './components/main';
 import { initializeApp } from 'firebase/app';
-import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { getAuth, GithubAuthProvider, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { useState } from 'react';
 
 function App() {
@@ -20,10 +20,9 @@ function App() {
     measurementId: "G-M7Y6SM5EP9"
   };
   const app = initializeApp(firebaseConfig);
-  
+  const auth = getAuth();
   const googleLogin = () => {
     const provider = new GoogleAuthProvider();
-    const auth = getAuth();
     signInWithPopup(auth, provider)
     .then(result => {
         console.log(result);
@@ -33,9 +32,20 @@ function App() {
     .catch(error => console.log('error!', error));
   }
 
+  const githubLogin = () => {
+    const provider = new GithubAuthProvider();
+    signInWithPopup(auth, provider)
+    .then(result => {
+      console.log(result);
+      setUser(result.user);
+      navigate("/main");
+    })
+    .catch(error => console.log('error!', error));
+  }
+
   return (
       <Routes>
-        <Route path="/" element={<Login googleLogin={googleLogin}/>}>
+        <Route path="/" element={<Login googleLogin={googleLogin} githubLogin={githubLogin}/>}>
           <Route path="login"></Route>
         </Route>
         <Route path="/main" element={<Main user={user}/>}></Route>
