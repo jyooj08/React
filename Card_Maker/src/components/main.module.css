@@ -1,0 +1,30 @@
+@value makerGreen from '../common/colors.css';
+
+.body{
+    margin: 0;
+}
+
+.mainHeader{
+    background-color: makerGreen;
+    text-align: center;
+    position: relative;
+}
+
+.mainHeader h1{
+    margin: 0;
+    padding: 0.5em 0;
+}
+
+.mainHeader .logoutBtn{
+    position: absolute;
+    bottom: 1em;
+    right: 1em;
+    color: white;
+    background: transparent;
+    border: 1px solid white;
+}
+
+.mainHdeader .logoutBtn:hover{
+    background-color: white;
+    color: makerGreen;
+}

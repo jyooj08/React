@@ -43,12 +43,17 @@ function App() {
     .catch(error => console.log('error!', error));
   }
 
+  const logout = () => {
+    setUser(null);
+    navigate("/");
+  }
+
   return (
       <Routes>
-        <Route path="/" element={<Login googleLogin={googleLogin} githubLogin={githubLogin}/>}>
+        <Route path="/" element={<Login googleLogin={googleLogin} githubLogin={githubLogin} />}>
           <Route path="login"></Route>
         </Route>
-        <Route path="/main" element={<Main user={user}/>}></Route>
+        <Route path="/main" element={<Main user={user} logout={logout}/>}></Route>
       </Routes>
   );
 }

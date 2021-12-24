@@ -11,8 +11,8 @@ class Login extends Component {
     }
     render() {
         return (
-            <section>
-                <header>Business Card Maker</header>
+            <section className={styles.loginSection}>
+                <header className={styles.loginHeader}>Business Card Maker</header>
                 <h1>Login</h1> 
                 <button className={styles.google} onClick={this.googleLogin}>Google</button>
                 <button className={styles.github} onClick={this.githubLogin}>GitHub</button>
