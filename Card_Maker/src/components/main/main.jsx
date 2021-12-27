@@ -43,8 +43,9 @@ class Main extends Component {
             company: newCard.company,
             color: newCard.color,
             title: newCard.title,
-            email:newCard.email,
-            message:newCard.message
+            email: newCard.email,
+            message: newCard.message,
+            fileName: newCard.fileName
         });
 
         let cards = this.state.cards.map(item => {

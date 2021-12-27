@@ -14,11 +14,10 @@
 }
 
 .image{
-    min-width: 5em;
-    width: 2rem;
+    display: block;
+    max-width: 8em;
     background-color: wheat;
     margin-right: 2em;
-
 }
 
 .content{

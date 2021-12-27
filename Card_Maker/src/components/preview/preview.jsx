@@ -17,11 +17,10 @@ class Preview extends Component {
 
         return (
             <li className={`${styles.preview} ${color}`}>
-                <div className={styles.image}>
-                    {/* <Image cloudName="dlizcmiiv" publicId="sample">
-                        <Transformation width="150" height="150"/>
-                    </Image> */}
-                    Image
+                <div >
+                    <Image className={styles.image} 
+                    cloudName="dlizcmiiv" 
+                    publicId={`cardMaker/${card.fileName}`}></Image>
                 </div>
                 <div className={styles.content}>
                     <h2 className={styles.name}>{card.name}</h2>

@@ -7,6 +7,7 @@ class Card{
         this.title = '';
         this.email = '';
         this.message = '';
+        this.fileName = '';
     }
 
     set(id, obj){
@@ -17,6 +18,7 @@ class Card{
         this.title = obj.title;
         this.email = obj.email;
         this.message = obj.message;
+        this.fileName = obj.fileName;
     }
 
     isEmpty = () => {

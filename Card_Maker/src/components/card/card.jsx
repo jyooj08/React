@@ -6,6 +6,7 @@ class Card extends Component {
 
     onChange = (event) => {
         const card = this.props.card;
+        console.log('onchange', event);
         switch(event.target.id){
             case 'name':
                 card.name = event.target.value; break;
@@ -19,6 +20,8 @@ class Card extends Component {
                 card.email = event.target.value; break;
             case 'message':
                 card.message = event.target.value; break;
+            case 'file':
+                card.fileName = event.target.files[0].name; break;
             default:
                 break;
         }
@@ -29,12 +32,13 @@ class Card extends Component {
         const url = "https://api.cloudinary.com/v1_1/dlizcmiiv/image/upload";
         const formData = new FormData();
         const file = this.fileRef.current.files[0];
-
+        const name = file.name.split('.')[0];
+        
         console.log(file);
 
-        formData.append('file', file, file.name);
+        formData.append('file', file);
         formData.append('upload_preset', 'etsnzjor');
-        formData.append('public_id', file.name);
+        formData.append('public_id', name);
         formData.append('folder','cardMaker');
 
         fetch(url, {
@@ -67,7 +71,7 @@ class Card extends Component {
                 <input type="text" className={styles.message} placeholder='Message' id='message' onChange={this.onChange} value={card.message}/>
                 </div>
                 <div className={styles.row}>
-                    <input type="file" className={styles.file} ref={this.fileRef}/>
+                    <input type="file" className={styles.file} ref={this.fileRef} id='file' onChange={this.onChange}/>
                     <button className={styles.btn} onClick={this.postImage}>Add Image</button>
                 </div>
             </li>
