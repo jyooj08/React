@@ -7,8 +7,10 @@ class PreviewList extends Component {
         return (
             <ul className={styles.previewlist}>
                {
-                   this.props.cards.map(c => 
-                    <Preview key={c.id} card={c}/>)
+                   this.props.cards.map(c => {
+                       if(!c.isEmpty()) return <Preview key={c.id} card={c}/>;
+                       return null;
+                   })
                } 
             </ul>
         );
