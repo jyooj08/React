@@ -10,19 +10,23 @@ input, select{
     margin-bottom: 1em;
 }
 
-.row1, .row2, .row3{
+.row{
     display: flex;
     width: 100%;
 }
 
-.row1 .name, .row1 .company, .row1 .color{
+.name, .company, .color{
     width: 33.33%;
 }
 
-.row2 .title, .row2 .email{
+.title, .email{
     width: 50%;
 }
 
-.row3 .message{
+.message{
     width: 100%;
+}
+
+.file, .btn{
+    width: 50%;
 }

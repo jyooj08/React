@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import styles from './card.module.css';
 
 class Card extends Component {
-    ref = React.createRef();
+    fileRef = React.createRef();
 
     onChange = (event) => {
         const card = this.props.card;
@@ -25,11 +25,33 @@ class Card extends Component {
         this.props.onChange(card);
     }
 
+    postImage = () => {
+        const url = "https://api.cloudinary.com/v1_1/dlizcmiiv/image/upload";
+        const formData = new FormData();
+        const file = this.fileRef.current.files[0];
+
+        console.log(file);
+
+        formData.append('file', file, file.name);
+        formData.append('upload_preset', 'etsnzjor');
+        formData.append('public_id', file.name);
+        formData.append('folder','cardMaker');
+
+        fetch(url, {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => console.log(response.text()))
+        .catch(error => console.log('error', error))
+    }
+
     render() {
         const card = this.props.card;
+        
+
         return (
             <li className={styles.card}>
-                <div className={styles.row1}>
+                <div className={styles.row}>
                     <input type="text" className={styles.name} placeholder='Name' id='name' onChange={this.onChange} value={card.name}/>
                     <input type="text" className={styles.company} placeholder='Company' id='company' onChange={this.onChange} value={card.company}/>
                     <select name="color" id='color' className={styles.color}  onChange={this.onChange}>
@@ -37,12 +59,16 @@ class Card extends Component {
                         <option value="gray">Gray</option>
                     </select>
                 </div>
-                <div className={styles.row2}>
+                <div className={styles.row}>
                     <input type="text" className={styles.title} placeholder='Title' id='title' onChange={this.onChange} value={card.title}/>
                     <input type="email" className={styles.email} placeholder='Email' id='email' onChange={this.onChange} value={card.email}/>
                 </div>
-                <div className={styles.row3}>
+                <div className={styles.row}>
                 <input type="text" className={styles.message} placeholder='Message' id='message' onChange={this.onChange} value={card.message}/>
+                </div>
+                <div className={styles.row}>
+                    <input type="file" className={styles.file} ref={this.fileRef}/>
+                    <button className={styles.btn} onClick={this.postImage}>Add Image</button>
                 </div>
             </li>
         );

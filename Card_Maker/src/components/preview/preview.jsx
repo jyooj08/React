@@ -1,3 +1,4 @@
+import { Image, Transformation } from 'cloudinary-react';
 import React, { Component } from 'react';
 import styles from './preview.module.css';
 
@@ -17,7 +18,10 @@ class Preview extends Component {
         return (
             <li className={`${styles.preview} ${color}`}>
                 <div className={styles.image}>
-                    <img src="" alt="Image" />
+                    {/* <Image cloudName="dlizcmiiv" publicId="sample">
+                        <Transformation width="150" height="150"/>
+                    </Image> */}
+                    Image
                 </div>
                 <div className={styles.content}>
                     <h2 className={styles.name}>{card.name}</h2>
