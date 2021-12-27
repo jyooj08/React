@@ -1,18 +1,11 @@
 import React, { Component } from 'react';
 import Cardlist from '../cardlist/cardlist';
 import styles from './main.module.css';
+import Card from '../../common/card.js';
 
 class Main extends Component {
     state = {
-        cards: [{
-            id: Date.now(),
-            name: '',
-            company: '',
-            color: 'red',
-            title: '',
-            email: '',
-            message: ''
-        }]
+        cards: [new Card]
     }
 
     logout = () => {
