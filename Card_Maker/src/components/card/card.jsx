@@ -21,7 +21,7 @@ class Card extends Component {
             case 'message':
                 card.message = event.target.value; break;
             case card.name+'image':
-                card.fileName = event.target.files[0].name.split('.')[0]; 
+                card.fileName = event.target.files[0].name;
                 this.postImage();
                 break;
             default:
