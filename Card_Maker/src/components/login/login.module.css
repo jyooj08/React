@@ -1,5 +1,5 @@
-@value makerGreen from '../common/colors.css';
-@value borderRad from '../common/size.css';
+@value makerGreen from '../../common/colors.css';
+@value borderRad from '../../common/size.css';
 
 .loginSection{
     display: flex;

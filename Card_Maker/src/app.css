@@ -7,3 +7,8 @@ button{
   outline: none;
   cursor: pointer;
 }
+
+ul, li{
+  list-style: none;
+  padding: 0;
+}

@@ -1,0 +1,27 @@
+input, select{
+    margin: 0;
+    padding: 5px 3px;
+    outline: none;
+}
+
+.card{
+    -webkit-box-shadow: 3px 3px 5px 1px #C9C9C9; 
+    box-shadow: 3px 3px 5px 1px #C9C9C9;
+}
+
+.row1, .row2, .row3{
+    display: flex;
+    width: 100%;
+}
+
+.row1 .name, .row1 .company, .row1 .color{
+    width: 33.33%;
+}
+
+.row2 .title, .row2 .email{
+    width: 50%;
+}
+
+.row3 .message{
+    width: 100%;
+}
