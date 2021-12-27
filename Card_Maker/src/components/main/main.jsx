@@ -35,6 +35,7 @@ class Main extends Component {
     }
 
     onChange = (newCard) => {
+        console.log('newcard',newCard);
         //database
         if(newCard.isEmpty()){
             set(ref(this.db, `${this.user}/cards/${newCard.id}`), null);

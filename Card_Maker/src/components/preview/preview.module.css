@@ -6,11 +6,20 @@
     padding: 2em;
 }
 
-.preview.red{
-    background-color: red;
+.preview.pink{
+    background-color: lightpink;
 }
 .preview.gray{
-    background-color: gray;
+    background-color: lightgray;
+}
+.preview.blue{
+    background-color: powderblue;
+}
+.preview.green{
+    background-color: lightgreen;
+}
+.preview.ivory{
+    background-color: ivory;
 }
 
 .image{

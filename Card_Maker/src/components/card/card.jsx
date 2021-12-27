@@ -6,7 +6,7 @@ class Card extends Component {
 
     onChange = (event) => {
         const card = this.props.card;
-        console.log('onchange', event);
+        
         switch(event.target.id){
             case 'name':
                 card.name = event.target.value; break;
@@ -20,8 +20,10 @@ class Card extends Component {
                 card.email = event.target.value; break;
             case 'message':
                 card.message = event.target.value; break;
-            case 'file':
-                card.fileName = event.target.files[0].name; break;
+            case card.name+'image':
+                card.fileName = event.target.files[0].name.split('.')[0]; 
+                this.postImage();
+                break;
             default:
                 break;
         }
@@ -59,8 +61,11 @@ class Card extends Component {
                     <input type="text" className={styles.name} placeholder='Name' id='name' onChange={this.onChange} value={card.name}/>
                     <input type="text" className={styles.company} placeholder='Company' id='company' onChange={this.onChange} value={card.company}/>
                     <select name="color" id='color' className={styles.color}  onChange={this.onChange}>
-                        <option value="red">Red</option>
-                        <option value="gray">Gray</option>
+                        <option value="Lightpink">Pink</option>
+                        <option value="LightGray">Gray</option>
+                        <option value="Ivory">Ivory</option>
+                        <option value="PowderBlue">Blue</option>
+                        <option value="LightGreen">Green</option>
                     </select>
                 </div>
                 <div className={styles.row}>
@@ -71,8 +76,9 @@ class Card extends Component {
                 <input type="text" className={styles.message} placeholder='Message' id='message' onChange={this.onChange} value={card.message}/>
                 </div>
                 <div className={styles.row}>
-                    <input type="file" className={styles.file} ref={this.fileRef} id='file' onChange={this.onChange}/>
-                    <button className={styles.btn} onClick={this.postImage}>Add Image</button>
+                    <span className={styles.fileName}>{card.fileName}</span>
+                    <input type="file" className={styles.file} ref={this.fileRef} id={`${card.name}image`} onChange={this.onChange}/>
+                    <label htmlFor={`${card.name}image`} className={styles.btn}>Image</label>
                 </div>
             </li>
         );

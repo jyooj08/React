@@ -8,11 +8,17 @@ class Preview extends Component {
         let color;
 
         switch(card.color){
-            case 'gray':
+            case 'LightGray':
                 color = styles.gray; break;
-            case 'red':
+            case 'Ivory':
+                color = styles.ivory; break;
+            case 'PowderBlue':
+                color = styles.blue; break;
+            case 'LightGreen':
+                color = styles.green; break;
+            case 'LightPink':
             default:
-                color = styles.red; break;
+                color = styles.pink; break;
         }
 
         return (

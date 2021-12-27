@@ -1,4 +1,4 @@
-@value makerGreen from '../../common/colors.css';
+@value makerPink from '../../common/colors.css';
 @value borderRad from '../../common/size.css';
 
 .loginSection{
@@ -9,13 +9,13 @@
     position: absolute;
     top: 50%; left: 50%;
     transform: translate(-50%, -50%);
-    border: 2px solid makerGreen;   
+    border: 2px solid makerPink;   
     padding-bottom: 2rem; 
 }
 
 .loginHeader{
     width: 100%;
-    background-color: makerGreen;
+    background-color: makerPink;
     color: white;
     font-size: 1.5em;
     font-weight: bold;
@@ -27,11 +27,11 @@
     width: 50%;
     padding: 8px;
     margin: 4px 0;
-    border: 2px solid makerGreen;
+    border: 2px solid makerPink;
     border-radius: borderRad;
     background-color: white;
 }
 
 .google:hover, .github:hover{
-    background-color: makerGreen;
+    background-color: makerPink;
 }

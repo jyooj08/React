@@ -1,11 +1,11 @@
-@value makerGreen from '../../common/colors.css';
+@value makerPink from '../../common/colors.css';
 
 .body{
     margin: 0;
 }
 
 .mainHeader{
-    background-color: makerGreen;
+    background-color: makerPink;
     text-align: center;
     position: relative;
 }
@@ -30,7 +30,7 @@
 
 .mainHeader .logoutBtn:hover{
     background-color: white;
-    color: makerGreen;
+    color: makerPink;
 }
 
 .sections{

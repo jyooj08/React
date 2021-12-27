@@ -3,7 +3,7 @@ class Card{
         this.id = Date.now();
         this.name = '';
         this.company = '';
-        this.color = 'red';
+        this.color = 'LightPink';
         this.title = '';
         this.email = '';
         this.message = '';
@@ -27,6 +27,7 @@ class Card{
         if(this.title !== '') return false;
         if(this.email !== '') return false;
         if(this.message !== '') return false;
+        if(this.fileName !== '') return false;
 
         return true;
     }
