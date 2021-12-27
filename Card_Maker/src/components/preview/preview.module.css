@@ -1,0 +1,37 @@
+.preview{
+    display: flex;
+    margin-bottom: 1em;
+    justify-content: space-around;
+    align-items: center;
+    border-radius: 1em;
+    padding: 1em;
+}
+
+.preview.red{
+    background-color: red;
+}
+.preview.gray{
+    background-color: gray;
+}
+
+.image{
+    min-width: 5em;
+    width: 2rem;
+    background-color: wheat;
+}
+
+.content{
+    display: flex;
+    flex-direction: column;
+}
+
+.name{
+    margin: 0;
+}
+
+.line{
+    width: 100%;
+    height: 2px;
+    background-color: black;
+    margin: 0.5em 0;
+}

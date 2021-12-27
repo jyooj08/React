@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Cardlist from '../cardlist/cardlist';
 import styles from './main.module.css';
 import Card from '../../common/card.js';
+import PreviewList from '../previewlist/previewlist';
 
 class Main extends Component {
     state = {
@@ -41,6 +42,7 @@ class Main extends Component {
                     </section>
                     <section className={styles.previewSection}>
                         <h1>Card Preview</h1>
+                        <PreviewList cards={this.state.cards}/>
                     </section>
                 </div>
             </div>
