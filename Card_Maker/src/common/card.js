@@ -10,7 +10,6 @@ class Card{
     }
 
     isEmpty = () => {
-        if(this.id !== '') return false;
         if(this.name !== '') return false;
         if(this.company !== '') return false;
         if(this.title !== '') return false;

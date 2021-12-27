@@ -7,6 +7,7 @@ input, select{
 .card{
     -webkit-box-shadow: 3px 3px 5px 1px #C9C9C9; 
     box-shadow: 3px 3px 5px 1px #C9C9C9;
+    margin-bottom: 1em;
 }
 
 .row1, .row2, .row3{

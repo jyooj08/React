@@ -19,6 +19,8 @@ class Main extends Component {
             }
             return item;
         });
+        cards = cards.filter(card => !card.isEmpty());
+        cards.push(new Card());
         this.setState({cards});
     }
     
