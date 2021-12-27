@@ -9,6 +9,16 @@ class Card{
         this.message = '';
     }
 
+    set(id, obj){
+        this.id = id;
+        this.name = obj.name;
+        this.company = obj.company;
+        this.color = obj.color;
+        this.title = obj.title;
+        this.email = obj.email;
+        this.message = obj.message;
+    }
+
     isEmpty = () => {
         if(this.name !== '') return false;
         if(this.company !== '') return false;

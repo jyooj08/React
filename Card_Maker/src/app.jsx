@@ -4,6 +4,7 @@ import Login from './components/login/login.jsx';
 import Main from './components/main/main.jsx';
 import { initializeApp } from 'firebase/app';
 import { getAuth, GithubAuthProvider, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { getDatabase, ref, set } from 'firebase/database';
 import { useState } from 'react';
 
 function App() {
@@ -17,10 +18,13 @@ function App() {
     storageBucket: "business-card-maker-53167.appspot.com",
     messagingSenderId: "375309422156",
     appId: "1:375309422156:web:dc3e80953fe4ec3b042ee9",
-    measurementId: "G-M7Y6SM5EP9"
+    measurementId: "G-M7Y6SM5EP9",
+    databaseURL: "https://business-card-maker-53167-default-rtdb.firebaseio.com/"
   };
   const app = initializeApp(firebaseConfig);
   const auth = getAuth();
+  const db = getDatabase(app);
+
   const googleLogin = () => {
     const provider = new GoogleAuthProvider();
     signInWithPopup(auth, provider)
@@ -53,7 +57,10 @@ function App() {
         <Route path="/" element={<Login googleLogin={googleLogin} githubLogin={githubLogin} />}>
           <Route path="login"></Route>
         </Route>
-        <Route path="/main" element={<Main user={user} logout={logout}/>}></Route>
+        <Route path="/main" element={
+        <Main user={user} 
+        logout={logout}
+        db={db}/>}></Route>
       </Routes>
   );
 }
