@@ -7,13 +7,18 @@ class Cardlist extends Component {
         this.props.onChange(card);
     }
 
+    deleteCard = (card) => {
+        this.props.deleteCard(card);
+    }
+
     render() {
         return (
             <ul className={styles.cardlist}>
                 {
                     this.props.cards.map(c => 
                         <Card card={c} key={c.id}
-                        onChange={this.onChange}/>
+                        onChange={this.onChange}
+                        deleteCard={this.deleteCard}/>
                     )
                 }
             </ul>

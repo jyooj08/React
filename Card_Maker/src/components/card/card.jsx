@@ -3,6 +3,7 @@ import styles from './card.module.css';
 
 class Card extends Component {
     fileRef = React.createRef();
+    imageRef = React.createRef();
 
     onChange = (event) => {
         const card = this.props.card;
@@ -51,6 +52,10 @@ class Card extends Component {
         .catch(error => console.log('error', error))
     }
 
+    deleteCard = () => {
+        this.props.deleteCard(this.props.card);
+    }
+
     render() {
         const card = this.props.card;
         
@@ -76,9 +81,9 @@ class Card extends Component {
                 <input type="text" className={styles.message} placeholder='Message' id='message' onChange={this.onChange} value={card.message}/>
                 </div>
                 <div className={styles.row}>
-                    <span className={styles.fileName}>{card.fileName}</span>
                     <input type="file" className={styles.file} ref={this.fileRef} id={`${card.name}image`} onChange={this.onChange}/>
-                    <label htmlFor={`${card.name}image`} className={styles.btn}>Image</label>
+                    <label htmlFor={`${card.name}image`} className={styles.imageBtn}>{card.fileName == '' ? 'Image' : card.fileName}</label>
+                    <button className={styles.deleteBtn} onClick={this.deleteCard}>Delete</button>
                 </div>
             </li>
         );

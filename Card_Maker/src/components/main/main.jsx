@@ -37,9 +37,7 @@ class Main extends Component {
     onChange = (newCard) => {
         console.log('newcard',newCard);
         //database
-        if(newCard.isEmpty()){
-            set(ref(this.db, `${this.user}/cards/${newCard.id}`), null);
-        } else set(ref(this.db, `${this.user}/cards/${newCard.id}`), {
+        set(ref(this.db, `${this.user}/cards/${newCard.id}`), {
             name: newCard.name,
             company: newCard.company,
             color: newCard.color,
@@ -59,6 +57,13 @@ class Main extends Component {
         cards.push(new Card());
         this.setState({cards});
     }
+
+    deleteCard = (card) => {
+        console.log(card);
+        set(ref(this.db, `${this.user}/cards/${card.id}`), null);
+        let cards = this.state.cards.filter(c => c.id !== card.id);
+        this.setState({cards});
+    }
     
     render() {
         return (
@@ -73,7 +78,8 @@ class Main extends Component {
                         <h1>Card Maker</h1>
                         <Cardlist 
                         cards={this.state.cards}
-                        onChange={this.onChange}/>
+                        onChange={this.onChange}
+                        deleteCard={this.deleteCard}/>
                     </section>
                     <section className={styles.previewSection}>
                         <h1>Card Preview</h1>

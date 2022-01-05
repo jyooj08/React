@@ -27,18 +27,18 @@ input, select{
     width: 100%;
 }
 
-.fileName, .btn{
+.imageBtn, .deleteBtn{
     width: 50%;
     padding: 8px 3px;
+    cursor: pointer;
 }
 
-.fileName{
+.imageBtn{
     background-color: pink;
 }
 
-.btn{
-    cursor: pointer;
-    background-color: gray;
+.deleteBtn{
+    background-color: lightgray;
 }
 
 .file{
