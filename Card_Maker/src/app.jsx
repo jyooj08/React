@@ -12,14 +12,14 @@ function App() {
   let navigate = useNavigate();
 
   const firebaseConfig = {
-    apiKey: "AIzaSyDTuOznOUriBcOn9MgpN-TTCFueSzF6CJY",
-    authDomain: "business-card-maker-53167.firebaseapp.com",
-    projectId: "business-card-maker-53167",
-    storageBucket: "business-card-maker-53167.appspot.com",
-    messagingSenderId: "375309422156",
-    appId: "1:375309422156:web:dc3e80953fe4ec3b042ee9",
-    measurementId: "G-M7Y6SM5EP9",
-    databaseURL: "https://business-card-maker-53167-default-rtdb.firebaseio.com/"
+    apiKey: process.env.REACT_APP_API_KEY,
+    authDomain: process.env.REACT_APP_AUTH_DOMAIN,
+    projectId: process.env.REACT_APP_PROJECT_ID,
+    storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
+    messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
+    appId: process.env.REACT_APP_APP_ID,
+    measurementId: process.env.REACT_APP_MEASUREMENT_ID,
+    databaseURL: process.env.REACT_APP_DB_URL
   };
   const app = initializeApp(firebaseConfig);
   const auth = getAuth();
