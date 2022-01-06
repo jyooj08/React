@@ -7,6 +7,10 @@ class Cardlist extends Component {
         this.props.onChange(card);
     }
 
+    addCard = () => {
+        this.props.addCard();
+    }
+
     deleteCard = (card) => {
         this.props.deleteCard(card);
     }
@@ -21,6 +25,7 @@ class Cardlist extends Component {
                         deleteCard={this.deleteCard}/>
                     )
                 }
+                <button className={styles.addBtn} onClick={this.addCard}>Add</button>
             </ul>
         );
     }

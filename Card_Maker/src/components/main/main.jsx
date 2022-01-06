@@ -25,7 +25,7 @@ class Main extends Component {
                 card.set(key, data[key]);
                 cards.push(card);
             }
-            cards.push(new Card());
+            
             this.setState({cards});
         });
     }
@@ -54,12 +54,26 @@ class Main extends Component {
             return item;
         });
         cards = cards.filter(card => !card.isEmpty());
-        cards.push(new Card());
         this.setState({cards});
     }
 
+    addCard = () => {
+        let newCard = new Card();
+        let cards = [...this.state.cards, newCard];
+        this.setState({cards});
+        set(ref(this.db, `${this.user}/cards/${newCard.id}`), {
+            name: newCard.name,
+            company: newCard.company,
+            color: newCard.color,
+            title: newCard.title,
+            email: newCard.email,
+            message: newCard.message,
+            fileName: newCard.fileName
+        });
+    }
+
     deleteCard = (card) => {
-        console.log(card);
+        
         set(ref(this.db, `${this.user}/cards/${card.id}`), null);
         let cards = this.state.cards.filter(c => c.id !== card.id);
         this.setState({cards});
@@ -79,6 +93,7 @@ class Main extends Component {
                         <Cardlist 
                         cards={this.state.cards}
                         onChange={this.onChange}
+                        addCard={this.addCard}
                         deleteCard={this.deleteCard}/>
                     </section>
                     <section className={styles.previewSection}>

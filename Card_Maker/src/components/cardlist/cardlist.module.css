@@ -2,3 +2,14 @@
     max-width: 80%;
     margin: auto;
 }
+
+.addBtn{
+    width: 100%;
+    padding: 1em;
+    background-color: lightgray;
+    box-shadow: 3px 3px 5px 1px #C9C9C9;
+}
+
+.addBtn:hover{
+    background-color: pink;
+}
