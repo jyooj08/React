@@ -1,43 +1,42 @@
-import React, { Component } from 'react';
+import React, { Component, useEffect, useState } from 'react';
 import Cardlist from '../cardlist/cardlist';
 import styles from './main.module.css';
 import Card from '../../common/card.js';
 import PreviewList from '../previewlist/previewlist';
 import { onValue, ref, set } from "firebase/database";
+import { useLocation } from 'react-router-dom';
 
-class Main extends Component {
-    state = {
-        cards: []
-    }
-    db = this.props.db;
-    user = this.props.user.uid;
+function Main (props) {
+    const [cards, setCards] = useState([]);
+    const db = props.db;
+    const location = useLocation();
+    const user = location.state.uid;
     
-    componentDidMount(){
-        const cardsRef = ref(this.db, `${this.user}/cards`);
+    useEffect(() => {
+        const cardsRef = ref(db, `${user}/cards`);
         onValue(cardsRef, _cards => {
-            let cards = [];
+            let cards2 = [];
             const data = _cards.val();
-            
-            console.log(data);
             
             for(let key in data){
                 let card = new Card();
                 card.set(key, data[key]);
-                cards.push(card);
+                cards2.push(card);
             }
             
-            this.setState({cards});
+            setCards(cards2);
         });
+        console.log(location);
+    },[])
+
+    const logout = () => {
+        props.logout();
     }
 
-    logout = () => {
-        this.props.logout();
-    }
-
-    onChange = (newCard) => {
+    const onChange = (newCard) => {
         console.log('newcard',newCard);
         //database
-        set(ref(this.db, `${this.user}/cards/${newCard.id}`), {
+        set(ref(db, `${user}/cards/${newCard.id}`), {
             name: newCard.name,
             company: newCard.company,
             color: newCard.color,
@@ -47,21 +46,21 @@ class Main extends Component {
             fileName: newCard.fileName
         });
 
-        let cards = this.state.cards.map(item => {
+        let _cards = cards.map(item => {
             if(item.id == newCard.id){
                 return newCard;
             }
             return item;
         });
-        cards = cards.filter(card => !card.isEmpty());
-        this.setState({cards});
+        _cards = _cards.filter(card => !card.isEmpty());
+        setCards(_cards);
     }
 
-    addCard = () => {
+    const addCard = () => {
         let newCard = new Card();
-        let cards = [...this.state.cards, newCard];
-        this.setState({cards});
-        set(ref(this.db, `${this.user}/cards/${newCard.id}`), {
+        let _cards = [...cards, newCard];
+        setCards(_cards);
+        set(ref(db, `${user}/cards/${newCard.id}`), {
             name: newCard.name,
             company: newCard.company,
             color: newCard.color,
@@ -72,38 +71,37 @@ class Main extends Component {
         });
     }
 
-    deleteCard = (card) => {
+    const deleteCard = (card) => {
         
-        set(ref(this.db, `${this.user}/cards/${card.id}`), null);
-        let cards = this.state.cards.filter(c => c.id !== card.id);
-        this.setState({cards});
+        set(ref(db, `${user}/cards/${card.id}`), null);
+        let _cards = cards.filter(c => c.id !== card.id);
+        setCards(_cards);
     }
     
-    render() {
-        return (
-            <div>
-                <header className={styles.mainHeader}>
-                    <h1>Business Card Maker</h1>
-                    <button className={styles.logoutBtn} onClick={this.logout}>Log out</button>
-                </header>
+    
+    return (
+        <div>
+            <header className={styles.mainHeader}>
+                <h1>Business Card Maker</h1>
+                <button className={styles.logoutBtn} onClick={logout}>Log out</button>
+            </header>
 
-                <div className={styles.sections}>
-                    <section className={styles.listSection}>
-                        <h1>Card Maker</h1>
-                        <Cardlist 
-                        cards={this.state.cards}
-                        onChange={this.onChange}
-                        addCard={this.addCard}
-                        deleteCard={this.deleteCard}/>
-                    </section>
-                    <section className={styles.previewSection}>
-                        <h1>Card Preview</h1>
-                        <PreviewList cards={this.state.cards}/>
-                    </section>
-                </div>
+            <div className={styles.sections}>
+                <section className={styles.listSection}>
+                    <h1>Card Maker</h1>
+                    <Cardlist 
+                    cards={cards}
+                    onChange={onChange}
+                    addCard={addCard}
+                    deleteCard={deleteCard}/>
+                </section>
+                <section className={styles.previewSection}>
+                    <h1>Card Preview</h1>
+                    <PreviewList cards={cards}/>
+                </section>
             </div>
-        );
-    }
+        </div>
+    );
 }
 
 export default Main;

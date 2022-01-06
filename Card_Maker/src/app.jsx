@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes, useNavigate } from 'react-router-dom';
+import { BrowserRouter, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import './app.css';
 import Login from './components/login/login.jsx';
 import Main from './components/main/main.jsx';
@@ -31,7 +31,9 @@ function App() {
     .then(result => {
         console.log(result);
         setUser(result.user);
-        navigate("/main");
+        navigate("/main", {state: {
+          uid: result.user.uid
+        }});
     })
     .catch(error => console.log('error!', error));
   }
@@ -42,7 +44,9 @@ function App() {
     .then(result => {
       console.log(result);
       setUser(result.user);
-      navigate("/main");
+      navigate("/main", {state: {
+        uid: result.user.uid
+      }});
     })
     .catch(error => console.log('error!', error));
   }
@@ -58,7 +62,7 @@ function App() {
           <Route path="login"></Route>
         </Route>
         <Route path="/main" element={
-        <Main user={user} 
+        <Main 
         logout={logout}
         db={db}/>}></Route>
       </Routes>
