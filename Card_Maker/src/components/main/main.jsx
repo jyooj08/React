@@ -4,15 +4,25 @@ import styles from './main.module.css';
 import Card from '../../common/card.js';
 import PreviewList from '../previewlist/previewlist';
 import { onValue, ref, set } from "firebase/database";
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { getAuth } from 'firebase/auth';
 
 function Main (props) {
     const [cards, setCards] = useState([]);
     const db = props.db;
+    const navigate = useNavigate();
     const location = useLocation();
-    const user = location.state.uid;
-    
+    let user;
+    const auth = getAuth();
+
     useEffect(() => {
+        const currentUser = auth.currentUser;
+        if(!currentUser){
+            console.log('no user');
+            navigate('/');
+            return;
+        }
+        user = location.state.uid;
         const cardsRef = ref(db, `${user}/cards`);
         onValue(cardsRef, _cards => {
             let cards2 = [];
@@ -30,7 +40,8 @@ function Main (props) {
     },[])
 
     const logout = () => {
-        props.logout();
+        auth.signOut();
+        navigate('/');
     }
 
     const onChange = (newCard) => {
