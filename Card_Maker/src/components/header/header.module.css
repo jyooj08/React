@@ -1,0 +1,40 @@
+@value makerPink from '../../common/colors.css';
+
+.header{
+    position: relative;
+    width: 100%;
+    background-color: makerPink;
+    color: white;
+    font-size: 1.5em;
+    font-weight: bold;
+    text-align: center;
+    padding: 1em 0;
+}
+
+.text{
+    margin: 0;
+}
+
+.logout{
+    position: absolute;
+    bottom: 1em;
+    right: 1em;
+    color: white;
+    background-color: transparent;
+    border: 2px solid white;
+    border-radius: 0.5em;
+    font-weight: bold;
+    padding: 5px;
+}
+
+.logout:hover{
+    background-color: white;
+    color: makerPink;
+}
+
+.logout.show{
+    display: block;
+}
+.logout.hide{
+    display: none;
+}

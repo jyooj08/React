@@ -4,35 +4,6 @@
     margin: 0;
 }
 
-.mainHeader{
-    background-color: makerPink;
-    text-align: center;
-    position: relative;
-}
-
-.mainHeader h1{
-    margin: 0;
-    padding: 0.5em 0;
-    color: white;
-}
-
-.mainHeader .logoutBtn{
-    position: absolute;
-    bottom: 1em;
-    right: 1em;
-    color: white;
-    background-color: transparent;
-    border: 2px solid white;
-    border-radius: 0.5em;
-    font-weight: bold;
-    padding: 5px;
-}
-
-.mainHeader .logoutBtn:hover{
-    background-color: white;
-    color: makerPink;
-}
-
 .sections{
     display: flex;
     width: 100%;

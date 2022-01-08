@@ -1,14 +1,12 @@
-import { BrowserRouter, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
+import { Route, Routes, useNavigate } from 'react-router-dom';
 import './app.css';
 import Login from './components/login/login.jsx';
 import Main from './components/main/main.jsx';
 import { initializeApp } from 'firebase/app';
 import { getAuth, GithubAuthProvider, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
-import { getDatabase, ref, set } from 'firebase/database';
-import { useState } from 'react';
+import { getDatabase } from 'firebase/database';
 
 function App() {
-  const [user, setUser] = useState(null);
   let navigate = useNavigate();
 
   const firebaseConfig = {
@@ -29,8 +27,6 @@ function App() {
     const provider = new GoogleAuthProvider();
     signInWithPopup(auth, provider)
     .then(result => {
-        console.log(result);
-        setUser(result.user);
         navigate("/main", {state: {
           uid: result.user.uid
         }});
@@ -42,8 +38,6 @@ function App() {
     const provider = new GithubAuthProvider();
     signInWithPopup(auth, provider)
     .then(result => {
-      console.log(result);
-      setUser(result.user);
       navigate("/main", {state: {
         uid: result.user.uid
       }});

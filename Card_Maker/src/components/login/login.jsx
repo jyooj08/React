@@ -1,10 +1,10 @@
-import React, { Component, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import styles from './login.module.css';
 import { getAuth, onAuthStateChanged } from "firebase/auth";
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import Header from '../header/header';
 
 function Login(props) {
-    const location = useLocation();
     const navigate = useNavigate();
     
     const googleLogin = () => {
@@ -16,7 +16,6 @@ function Login(props) {
     }
 
     useEffect(() => {
-        console.log('login mount');
         const auth = getAuth();
         onAuthStateChanged(auth, (user) => {
             if(user){
@@ -29,7 +28,7 @@ function Login(props) {
 
     return (
         <section className={styles.loginSection}>
-            <header className={styles.loginHeader}>Business Card Maker</header>
+            <Header/>
             <h1>Login</h1> 
             <button className={styles.google} onClick={googleLogin}>Google</button>
             <button className={styles.github} onClick={githubLogin}>GitHub</button>

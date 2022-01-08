@@ -1,4 +1,4 @@
-import React, { Component, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Cardlist from '../cardlist/cardlist';
 import styles from './main.module.css';
 import Card from '../../common/card.js';
@@ -6,6 +6,7 @@ import PreviewList from '../previewlist/previewlist';
 import { onValue, ref, set } from "firebase/database";
 import { useLocation, useNavigate } from 'react-router-dom';
 import { getAuth } from 'firebase/auth';
+import Header from '../header/header';
 
 function Main (props) {
     const [cards, setCards] = useState([]);
@@ -18,10 +19,10 @@ function Main (props) {
     useEffect(() => {
         const currentUser = auth.currentUser;
         if(!currentUser){
-            console.log('no user');
             navigate('/');
             return;
         }
+
         user = location.state.uid;
         const cardsRef = ref(db, `${user}/cards`);
         onValue(cardsRef, _cards => {
@@ -36,16 +37,10 @@ function Main (props) {
             
             setCards(cards2);
         });
-        console.log(location);
+        
     },[])
 
-    const logout = () => {
-        auth.signOut();
-        navigate('/');
-    }
-
     const onChange = (newCard) => {
-        console.log('newcard',newCard);
         //database
         set(ref(db, `${user}/cards/${newCard.id}`), {
             name: newCard.name,
@@ -58,7 +53,7 @@ function Main (props) {
         });
 
         let _cards = cards.map(item => {
-            if(item.id == newCard.id){
+            if(item.id === newCard.id){
                 return newCard;
             }
             return item;
@@ -92,11 +87,7 @@ function Main (props) {
     
     return (
         <div>
-            <header className={styles.mainHeader}>
-                <h1>Business Card Maker</h1>
-                <button className={styles.logoutBtn} onClick={logout}>Log out</button>
-            </header>
-
+            <Header/>
             <div className={styles.sections}>
                 <section className={styles.listSection}>
                     <h1>Card Maker</h1>

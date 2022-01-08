@@ -1,4 +1,4 @@
-import { Image, Transformation } from 'cloudinary-react';
+import { Image } from 'cloudinary-react';
 import React, { Component } from 'react';
 import styles from './preview.module.css';
 

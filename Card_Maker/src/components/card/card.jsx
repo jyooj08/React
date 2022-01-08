@@ -58,14 +58,13 @@ class Card extends Component {
 
     render() {
         const card = this.props.card;
-        
 
         return (
             <li className={styles.card}>
                 <div className={styles.row}>
                     <input type="text" className={styles.name} placeholder='Name' id='name' onChange={this.onChange} value={card.name}/>
                     <input type="text" className={styles.company} placeholder='Company' id='company' onChange={this.onChange} value={card.company}/>
-                    <select name="color" id='color' className={styles.color}  onChange={this.onChange}>
+                    <select name="color" id='color' className={styles.color}  onChange={this.onChange} value={card.color}>
                         <option value="Lightpink">Pink</option>
                         <option value="LightGray">Gray</option>
                         <option value="Ivory">Ivory</option>
@@ -82,7 +81,7 @@ class Card extends Component {
                 </div>
                 <div className={styles.row}>
                     <input type="file" className={styles.file} ref={this.fileRef} id={`${card.name}image`} onChange={this.onChange}/>
-                    <label htmlFor={`${card.name}image`} className={styles.imageBtn}>{card.fileName == '' ? 'Image' : card.fileName}</label>
+                    <label htmlFor={`${card.name}image`} className={styles.imageBtn}>{card.fileName === '' ? 'Image' : card.fileName}</label>
                     <button className={styles.deleteBtn} onClick={this.deleteCard}>Delete</button>
                 </div>
             </li>
