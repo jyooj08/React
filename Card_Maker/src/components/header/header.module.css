@@ -31,10 +31,3 @@
     background-color: white;
     color: makerPink;
 }
-
-.logout.show{
-    display: block;
-}
-.logout.hide{
-    display: none;
-}

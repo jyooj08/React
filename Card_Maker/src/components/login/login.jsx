@@ -4,26 +4,20 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { useNavigate } from 'react-router-dom';
 import Header from '../header/header';
 
-function Login(props) {
+function Login({fb}) {
     const navigate = useNavigate();
     
     const googleLogin = () => {
-        props.googleLogin();
+        fb.googleLogin(navigate);
     }
 
     const githubLogin = () => {
-        props.githubLogin();
+        fb.githubLogin(navigate);
     }
 
     useEffect(() => {
-        const auth = getAuth();
-        onAuthStateChanged(auth, (user) => {
-            if(user){
-                navigate("/main", {state: {
-                    uid: user.uid
-                }});
-            }
-        })
+        console.log('login', fb.getUser());
+        fb.autoLogin(navigate);
     })
 
     return (

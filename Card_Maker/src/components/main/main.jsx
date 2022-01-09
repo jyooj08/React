@@ -87,7 +87,7 @@ function Main (props) {
     
     return (
         <div>
-            <Header/>
+            <Header fb={props.fb}/>
             <div className={styles.sections}>
                 <section className={styles.listSection}>
                     <h1>Card Maker</h1>
