@@ -1,6 +1,7 @@
 import { getAuth, GithubAuthProvider, GoogleAuthProvider, onAuthStateChanged, signInWithPopup } from "firebase/auth";
 import { initializeApp } from 'firebase/app';
-import { getDatabase } from 'firebase/database';
+import { get, getDatabase, onValue, ref, set } from 'firebase/database';
+import Card from '../common/card.js';
 
 class Firebase{
     firebaseConfig = {
@@ -56,6 +57,37 @@ class Firebase{
 
       getUser = () => {
           return this.auth.currentUser;
+      }
+
+      getCardsFromDB = (user) => {
+          const cardsRef = ref(this.db, `${user}/cards`);
+          return get(cardsRef).then(result => {
+            let cards = [];
+            const data = result.val();
+
+            for(let key in data){
+              let c = new Card();
+              c.set(key, data[key]);
+              cards.push(c);
+            }
+            return cards;
+          });
+      }
+
+      setCardInDB = (user, card) => {
+        set(ref(this.db, `${user}/cards/${card.id}`), {
+            name: card.name,
+            company: card.company,
+            color: card.color,
+            title: card.title,
+            email: card.email,
+            message: card.message,
+            fileName: card.fileName
+        });
+      }
+
+      deleteCardInDB = (user, card) => {
+        set(ref(this.db, `${user}/cards/${card.id}`), null);
       }
 }
 

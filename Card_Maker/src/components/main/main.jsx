@@ -3,17 +3,15 @@ import Cardlist from '../cardlist/cardlist';
 import styles from './main.module.css';
 import Card from '../../common/card.js';
 import PreviewList from '../previewlist/previewlist';
-import { onValue, ref, set } from "firebase/database";
 import { useLocation, useNavigate } from 'react-router-dom';
 import { getAuth } from 'firebase/auth';
 import Header from '../header/header';
 
-function Main (props) {
+function Main ({fb}) {
     const [cards, setCards] = useState([]);
-    const db = props.db;
     const navigate = useNavigate();
     const location = useLocation();
-    let user;
+    let user = location.state.uid;
     const auth = getAuth();
 
     useEffect(() => {
@@ -23,71 +21,40 @@ function Main (props) {
             return;
         }
 
-        user = location.state.uid;
-        const cardsRef = ref(db, `${user}/cards`);
-        onValue(cardsRef, _cards => {
-            let cards2 = [];
-            const data = _cards.val();
-            
-            for(let key in data){
-                let card = new Card();
-                card.set(key, data[key]);
-                cards2.push(card);
-            }
-            
-            setCards(cards2);
-        });
+        fb.getCardsFromDB(user)
+        .then(_cards => setCards(_cards));
         
     },[])
 
     const onChange = (newCard) => {
-        //database
-        set(ref(db, `${user}/cards/${newCard.id}`), {
-            name: newCard.name,
-            company: newCard.company,
-            color: newCard.color,
-            title: newCard.title,
-            email: newCard.email,
-            message: newCard.message,
-            fileName: newCard.fileName
-        });
-
         let _cards = cards.map(item => {
             if(item.id === newCard.id){
                 return newCard;
             }
             return item;
         });
-        _cards = _cards.filter(card => !card.isEmpty());
+        
         setCards(_cards);
+        fb.setCardInDB(user, newCard);
     }
 
     const addCard = () => {
         let newCard = new Card();
         let _cards = [...cards, newCard];
         setCards(_cards);
-        set(ref(db, `${user}/cards/${newCard.id}`), {
-            name: newCard.name,
-            company: newCard.company,
-            color: newCard.color,
-            title: newCard.title,
-            email: newCard.email,
-            message: newCard.message,
-            fileName: newCard.fileName
-        });
+        fb.setCardInDB(user, newCard);
     }
 
     const deleteCard = (card) => {
-        
-        set(ref(db, `${user}/cards/${card.id}`), null);
         let _cards = cards.filter(c => c.id !== card.id);
         setCards(_cards);
+        fb.deleteCardInDB(user, card);
     }
     
     
     return (
         <div>
-            <Header fb={props.fb}/>
+            <Header fb={fb}/>
             <div className={styles.sections}>
                 <section className={styles.listSection}>
                     <h1>Card Maker</h1>
