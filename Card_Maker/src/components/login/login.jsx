@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import styles from './login.module.css';
-import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { useNavigate } from 'react-router-dom';
 import Header from '../header/header';
 
@@ -16,7 +15,6 @@ function Login({fb}) {
     }
 
     useEffect(() => {
-        console.log('login', fb.getUser());
         fb.autoLogin(navigate);
     })
 

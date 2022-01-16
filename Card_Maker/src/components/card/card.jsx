@@ -22,7 +22,7 @@ class Card extends Component {
             case 'message':
                 card.message = event.target.value; break;
             case card.name+'image':
-                card.fileName = event.target.files[0].name;
+                card.fileName = event.target.files[0].name.split('.')[0];
                 this.postImage();
                 break;
             default:
@@ -36,8 +36,7 @@ class Card extends Component {
         const formData = new FormData();
         const file = this.fileRef.current.files[0];
         const name = file.name.split('.')[0];
-        
-        console.log(file);
+        const card = this.props.card;
 
         formData.append('file', file);
         formData.append('upload_preset', 'etsnzjor');
@@ -48,7 +47,11 @@ class Card extends Component {
             method: 'POST',
             body: formData
         })
-        .then(response => console.log(response.text()))
+        .then(response => response.json())
+        .then((result) => {
+            card.fileURL = result.url;
+            this.props.onChange(card);
+        })
         .catch(error => console.log('error', error))
     }
 

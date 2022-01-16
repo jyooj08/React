@@ -1,6 +1,6 @@
 import { getAuth, GithubAuthProvider, GoogleAuthProvider, onAuthStateChanged, signInWithPopup } from "firebase/auth";
 import { initializeApp } from 'firebase/app';
-import { get, getDatabase, onValue, ref, set } from 'firebase/database';
+import { get, getDatabase, ref, set } from 'firebase/database';
 import Card from '../common/card.js';
 
 class Firebase{
@@ -82,7 +82,8 @@ class Firebase{
             title: card.title,
             email: card.email,
             message: card.message,
-            fileName: card.fileName
+            fileName: card.fileName,
+            fileURL: card.fileURL
         });
       }
 

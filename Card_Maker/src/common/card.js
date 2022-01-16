@@ -8,6 +8,7 @@ class Card{
         this.email = '';
         this.message = '';
         this.fileName = '';
+        this.fileURL = '';
     }
 
     set(id, obj){
@@ -19,6 +20,7 @@ class Card{
         this.email = obj.email;
         this.message = obj.message;
         this.fileName = obj.fileName;
+        this.fileURL = obj.fileURL;
     }
 
     isEmpty = () => {
@@ -28,6 +30,7 @@ class Card{
         if(this.email !== '') return false;
         if(this.message !== '') return false;
         if(this.fileName !== '') return false;
+        if(this.fileURL !== '') return false;
 
         return true;
     }

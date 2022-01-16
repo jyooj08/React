@@ -1,4 +1,3 @@
-import { Image } from 'cloudinary-react';
 import React, { Component } from 'react';
 import styles from './preview.module.css';
 
@@ -24,9 +23,7 @@ class Preview extends Component {
         return (
             <li className={`${styles.preview} ${color}`}>
                 <div >
-                    <Image className={styles.image} 
-                    cloudName="dlizcmiiv" 
-                    publicId={`cardMaker/${card.fileName}`}></Image>
+                    <img className={styles.image} src={card.fileURL} alt="No Image" />
                 </div>
                 <div className={styles.content}>
                     <h2 className={styles.name}>{card.name}</h2>
