@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
+import ImageUploader from '../../service/imageUploader';
 import styles from './card.module.css';
 
 class Card extends Component {
     fileRef = React.createRef();
     imageRef = React.createRef();
+    imageUploader = new ImageUploader();
 
     onChange = (event) => {
         const card = this.props.card;
@@ -32,27 +34,14 @@ class Card extends Component {
     }
 
     postImage = () => {
-        const url = "https://api.cloudinary.com/v1_1/dlizcmiiv/image/upload";
-        const formData = new FormData();
         const file = this.fileRef.current.files[0];
-        const name = file.name.split('.')[0];
         const card = this.props.card;
-
-        formData.append('file', file);
-        formData.append('upload_preset', 'etsnzjor');
-        formData.append('public_id', name);
-        formData.append('folder','cardMaker');
-
-        fetch(url, {
-            method: 'POST',
-            body: formData
-        })
-        .then(response => response.json())
-        .then((result) => {
+        this.imageUploader.upload(file)
+        .then(result => {
             card.fileURL = result.url;
             this.props.onChange(card);
         })
-        .catch(error => console.log('error', error))
+        .catch(error => console.log('error', error));
     }
 
     deleteCard = () => {
