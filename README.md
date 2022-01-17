@@ -3,6 +3,9 @@
 [Create new react-app]
 
     yarn create react-app app_name
+
+or
+
     cp -R template app_name
 
 [How to Run]
