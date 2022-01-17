@@ -3,6 +3,10 @@ import ImageUploader from '../../service/imageUploader';
 import styles from './card.module.css';
 
 class Card extends Component {
+    state = {
+        loading: false
+    }
+
     fileRef = React.createRef();
     imageRef = React.createRef();
     imageUploader = new ImageUploader();
@@ -24,7 +28,6 @@ class Card extends Component {
             case 'message':
                 card.message = event.target.value; break;
             case card.name+'image':
-                card.fileName = event.target.files[0].name.split('.')[0];
                 this.postImage();
                 break;
             default:
@@ -36,10 +39,15 @@ class Card extends Component {
     postImage = () => {
         const file = this.fileRef.current.files[0];
         const card = this.props.card;
-        this.imageUploader.upload(file)
+        const name = file.name.split('.')[0];
+
+        this.setState({loading: true});
+        this.imageUploader.upload(file, name)
         .then(result => {
+            card.fileName = name;
             card.fileURL = result.url;
             this.props.onChange(card);
+            this.setState({loading: false});
         })
         .catch(error => console.log('error', error));
     }
@@ -73,7 +81,8 @@ class Card extends Component {
                 </div>
                 <div className={styles.row}>
                     <input type="file" className={styles.file} ref={this.fileRef} id={`${card.name}image`} onChange={this.onChange}/>
-                    <label htmlFor={`${card.name}image`} className={styles.imageBtn}>{card.fileName === '' ? 'Image' : card.fileName}</label>
+                    {!this.state.loading && <label htmlFor={`${card.name}image`} className={styles.imageBtn}>{card.fileName === '' ? 'Image' : card.fileName}</label>}
+                    {this.state.loading && <div className={styles.loading}><i className="fas fa-spinner"></i></div>}
                     <button className={styles.deleteBtn} onClick={this.deleteCard}>Delete</button>
                 </div>
             </li>

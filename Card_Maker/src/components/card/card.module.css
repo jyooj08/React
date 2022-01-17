@@ -44,3 +44,11 @@ input, select{
 .file{
     display: none;
 }
+
+.loading{
+    background-color: pink;
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
