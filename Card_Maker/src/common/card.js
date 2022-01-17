@@ -11,6 +11,20 @@ class Card{
         this.fileURL = '';
     }
 
+    getCardObj = () =>{
+        return {
+            id: this.id,
+            name: this.name,
+            company: this.company,
+            color: this.color,
+            title: this.title,
+            email: this.email,
+            message: this.message,
+            fileName: this.fileName,
+            fileURL: this.fileURL
+        };
+    }
+
     set(id, obj){
         this.id = id;
         this.name = obj.name;
@@ -34,6 +48,7 @@ class Card{
 
         return true;
     }
+
 }
 
 export default Card;
