@@ -1,5 +1,7 @@
 .preview{
     display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
     margin-bottom: 1em;
     align-items: center;
     border-radius: 1em;
@@ -44,4 +46,10 @@
     height: 1px;
     background-color: black;
     margin: 0.5em 0;
+}
+
+@media screen and (max-width: 1024px) {
+    .image{
+        margin: 0;
+    }
 }
